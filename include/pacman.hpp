@@ -1,14 +1,12 @@
 #include"coordenada.hpp"
+#include<SFML/Graphics.hpp>
 #ifndef PACMAN_H
 #define PACMAN_H
-
-class Pacman{
-    private:
-        coordenada coord;
+#include"personagem.hpp"
+class Pacman: public Personagem{
     public:
-        void set_coord(short, short);
-        int getX();
-        int getY();
+        void drawPacman(sf::RenderWindow&);
+        void update();
 };
 
 #endif

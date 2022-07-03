@@ -7,6 +7,7 @@ constexpr unsigned char MAP_WIDTH = 21;
 constexpr unsigned char CELL_SIZE = 16;
 constexpr unsigned char SCREEN_RESIZE = 2;
 constexpr unsigned char FONT_HEIGHT = 16;
+constexpr unsigned int PACMAN_SPEED = 10;
 
 
 enum Cell

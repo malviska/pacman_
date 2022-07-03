@@ -9,7 +9,7 @@ class CellMaker
 {
     public:
         CellMaker();
-        std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> make(const std::array<std::string, MAP_HEIGHT>&, std::array<coordenada, 4>&, Pacman&);
+        std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> make(const std::array<std::string, MAP_HEIGHT>&, std::array<Coordenada, 4>&, Pacman&);
 
 };
 

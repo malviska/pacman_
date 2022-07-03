@@ -8,7 +8,7 @@ int main ()
 {
     CellMaker celulas;
     std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> map;
-    std::array<coordenada, 4> ghostsPositions;
+    std::array<Coordenada, 4> ghostsPositions;
     Pacman pacman;
 
     std::array<std::string, MAP_HEIGHT> map_sketch = {

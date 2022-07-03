@@ -3,7 +3,7 @@
 
 CellMaker::CellMaker(){};
 
-std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> CellMaker::make(const std::array<std::string, MAP_HEIGHT>& _map_draw, std::array<coordenada, 4>& _ghosts_coord, Pacman& _pacman)
+std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> CellMaker::make(const std::array<std::string, MAP_HEIGHT>& _map_draw, std::array<Coordenada, 4>& _ghosts_coord, Pacman& _pacman)
 {
     std::array<std::array<Cell, MAP_HEIGHT>, MAP_WIDTH> output_map{};
     for(short i = 0; i<MAP_HEIGHT; i++){
