@@ -9,8 +9,8 @@ class Personagem{
         short speed = 1;
         Coordenada coord;
     public:
-        void move();
-        void set_coord(short, short);
+        void move(short direction);
+        void set_coord(short x, short y);
         short getX();
         short getY();
         void set_direction(short);

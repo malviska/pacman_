@@ -1,7 +1,9 @@
 #include"personagem.hpp"
 
-void Personagem::move(){
-    switch (this->direction)
+#include <iostream>
+
+void Personagem::move(short direction){
+    switch (direction)
     {
     case 1:
         this->coord.y -= speed;

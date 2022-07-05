@@ -52,7 +52,6 @@ int main ()
         mapa.make(map,window);
         pacman.drawPacman(window);
         pacman.update();
-        pacman.move();
         window.display();
     }
 }

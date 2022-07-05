@@ -9,10 +9,10 @@ void Pacman::drawPacman(sf::RenderWindow& _window){
 }
 
 void Pacman::update(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) this->set_direction(3);
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) this->set_direction(1);
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) this->set_direction(2) ;
-    else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) this->set_direction(0);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) this->move(3);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) this->move(1);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) this->move(2) ;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) this->move(0);
 }
 
 
