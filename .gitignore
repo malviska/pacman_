@@ -1,0 +1,5 @@
+bin/
+temp.txt
+.vscode
+build/
+build_tests/
