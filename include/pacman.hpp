@@ -2,6 +2,7 @@
 #define PACMAN_H
 
 #include "personagem.hpp"
+#include "collision.hpp"
 #include <string>
 
 class Pacman : public Personagem{
@@ -11,11 +12,12 @@ class Pacman : public Personagem{
     public:
         Pacman();
         //virtual void reviver() override;
-        virtual void mover(short move, Mapa* map) override;
+        virtual void mover(Mapa* map) override;
         virtual void comer(Mapa* map) override;
         void lose_life();
         short get_lifes();
         unsigned get_score();
+        virtual void setDirection(short dir) override;
 };
 
 #endif

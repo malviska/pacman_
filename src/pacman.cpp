@@ -5,8 +5,11 @@ Pacman::Pacman(){
     this->score = 0;
 }
 
+void Pacman::setDirection(short dir){
+    this->direction = dir;
+}
 
-void Pacman::mover(short direction, Mapa* map){
+void Pacman::mover(Mapa* map){
     /*
         função responsável pela movimentação do pacman
         recebe a direção e o rascunho do mapa do jogo

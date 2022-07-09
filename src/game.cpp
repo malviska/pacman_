@@ -100,10 +100,11 @@ void Game::update(){
 
 void Game::updatePacman(){
     //verifica qual direção o jogador está pressionando
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->pacman->mover(1, &this->map_sketch);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->pacman->mover(3, &this->map_sketch);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) this->pacman->mover(2, &this->map_sketch);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->pacman->mover(0, &this->map_sketch);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->pacman->setDirection(1);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->pacman->setDirection(3);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) this->pacman->setDirection(2);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->pacman->setDirection(0);
+    this->pacman->mover(&this->map_sketch);
 }
 
 void Game::updateText(){
