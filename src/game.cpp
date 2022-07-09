@@ -37,7 +37,7 @@ void Game::initWindow(){
     this->video_mode.width = CELL_SIZE * MAP_WIDTH * SCREEN_RESIZE;
     this->window = new sf::RenderWindow(this->video_mode, "PACMAN",  sf::Style::Titlebar | sf::Style::Close);
     this->window->setView(sf::View(sf::FloatRect(0, 0, CELL_SIZE * MAP_WIDTH, FONT_HEIGHT + CELL_SIZE * MAP_HEIGHT)));
-    this->window->setFramerateLimit(20);
+    this->window->setFramerateLimit(17);
 }
 
 void Game::initFonts(){

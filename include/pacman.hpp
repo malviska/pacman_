@@ -2,7 +2,6 @@
 #define PACMAN_H
 
 #include "personagem.hpp"
-#include "collision.hpp"
 #include <string>
 
 class Pacman : public Personagem{
