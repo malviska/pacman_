@@ -5,12 +5,12 @@
 #include "food.hpp"
 #include <vector>
 
-using Mapa = std::vector<std::vector<Object*>>;
+using Mapa = std::vector<std::vector<Object*>>; 
 
 class Personagem{
     protected:
-        Coordenada coord_init;
-        Coordenada coord_atual;
+        Coordenada coord_init; //coordenada aonde o pacman começa, será util quando ele morrer
+        Coordenada coord_atual; //coordenada atual, usada no movimento do pacman
 
     public:
         virtual ~Personagem();

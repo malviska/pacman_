@@ -18,3 +18,7 @@ int Food::get_points(){
 void Food::eaten(){
     Food::count--;
 }
+
+bool Food::is_food_over(){
+    return Food::count == 0;
+}

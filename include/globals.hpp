@@ -8,6 +8,8 @@ constexpr int FOOD_POINTS = 10;
 constexpr int DRUG_POINTS = 100;
 constexpr int SCREEN_RESIZE = 2;
 constexpr int FONT_HEIGHT = 16;
+constexpr int TUNEL_HEIGHT = 9;
+
 
 enum Type{
     blank,

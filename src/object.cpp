@@ -10,10 +10,6 @@ Object::Object(Type tipo){
 
 Object::~Object(){}
 
-int Object::get_type_int(){
-    return this->type;
-}
-
 Type Object::get_type(){
     return this->type;
 }
