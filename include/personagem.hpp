@@ -27,6 +27,7 @@ class Personagem{
         virtual void mover(Mapa* map)=0;
         virtual void comer(Mapa* map)=0;
         virtual void setDirection(short dir) = 0;
+        int getDirection();
 };
 
 

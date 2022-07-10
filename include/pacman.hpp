@@ -8,6 +8,7 @@ class Pacman : public Personagem{
     private:
         unsigned score = 0;
         short lifes = 3;
+        bool invencibility = false;
     public:
         Pacman();
         //virtual void reviver() override;
@@ -17,6 +18,10 @@ class Pacman : public Personagem{
         short get_lifes();
         unsigned get_score();
         virtual void setDirection(short dir) override;
+        void setInvencibility();
+        void timeInvencibility();
+        bool getInvencibility();
+        void sumScore();
 };
 
 #endif

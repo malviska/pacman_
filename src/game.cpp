@@ -24,10 +24,10 @@ void Game::initPacman(){
     this->window = nullptr;
 
     this->pacman = new Pacman();
-
+    this->red = new Ghost();
     this->File.open("./data/mapa.txt");
     Map m;
-    this->map_sketch = m.ler_mapa(this->File, *this->pacman);
+    this->map_sketch = m.ler_mapa(this->File, *this->pacman, *this->red);
     this->File.close();
 }
 
@@ -37,7 +37,7 @@ void Game::initWindow(){
     this->video_mode.width = CELL_SIZE * MAP_WIDTH * SCREEN_RESIZE;
     this->window = new sf::RenderWindow(this->video_mode, "PACMAN",  sf::Style::Titlebar | sf::Style::Close);
     this->window->setView(sf::View(sf::FloatRect(0, 0, CELL_SIZE * MAP_WIDTH, FONT_HEIGHT + CELL_SIZE * MAP_HEIGHT)));
-    this->window->setFramerateLimit(17);
+    this->window->setFramerateLimit(20);
 }
 
 void Game::initFonts(){
@@ -94,17 +94,88 @@ void Game::update(){
     this->pollEvents();
     if(!this->getEndGame()){
         this->updatePacman();
+        this->updateGhost();
         this->updateText();
     }
 }
 
 void Game::updatePacman(){
+    std::array<bool,4> walls{};
+    if(this->pacman->get_X() == this->red->get_X() && this->pacman->get_Y() == this->red->get_Y()){
+        if(!this->pacman->getInvencibility()){
+        this->pacman->lose_life();
+        this->pacman->set_X(this->pacman->get_X_init() +1);
+        this->pacman->set_Y(this->pacman->get_Y_init() +1);
+        this->pacman->setDirection(0);
+        }else{
+           this->pacman->sumScore();
+            this->red->set_X(this->red->get_X_init());
+            this->red->set_Y(this->red->get_Y_init());
+            this->red->setIsFrightened();
+            this->pacman->setInvencibility();
+        }
+    }
     //verifica qual direção o jogador está pressionando
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) this->pacman->setDirection(1);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)) this->pacman->setDirection(3);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)) this->pacman->setDirection(2);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)) this->pacman->setDirection(0);
-    this->pacman->mover(&this->map_sketch);
+    walls[0] = map_collision(0, 0, PACMAN_SPEED + this->pacman->get_X(), this->pacman->get_Y(), this->map_sketch);
+	walls[1] = map_collision(0, 0, this->pacman->get_X(), this->pacman->get_Y() - PACMAN_SPEED, this->map_sketch);
+	walls[2] = map_collision(0, 0, this->pacman->get_X() - PACMAN_SPEED, this->pacman->get_Y(), this->map_sketch);
+	walls[3] = map_collision(0, 0, this->pacman->get_X(), PACMAN_SPEED + this->pacman->get_Y(), this->map_sketch);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		if (!walls[2])
+		{
+			this->pacman->setDirection(2);
+		}
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+        if (!walls[1])
+		{
+			this->pacman->setDirection(1);
+		}
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+		if (!walls[3])
+		{
+			 this->pacman->setDirection(3);
+		}
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+        if (!walls[0]) //You can't turn in this direction if there's a wall there.
+		{
+			this->pacman->setDirection(0);
+		}
+	}
+    if(0 == walls[this->pacman->getDirection()]) {
+        this->pacman->mover(&this->map_sketch);
+        this->pacman->comer(&this->map_sketch);
+    }
+    if(this->pacman->get_X() == this->red->get_X() && this->pacman->get_Y() == this->red->get_Y()){
+        if(!this->pacman->getInvencibility()){
+        this->pacman->lose_life();
+        this->pacman->set_X(this->pacman->get_X_init() +1);
+        this->pacman->set_Y(this->pacman->get_Y_init() +1);
+        this->pacman->setDirection(0);
+        }else{
+            this->pacman->sumScore();
+            this->red->set_X(this->red->get_X_init());
+            this->red->set_Y(this->red->get_Y_init());
+            this->red->setIsFrightened();
+            this->pacman->setInvencibility();
+        }
+    }
+}
+
+
+void Game::updateGhost(){
+    std::array<bool,4> walls{};
+    // walls[0] = map_collision(0, 0, PACMAN_SPEED + this->red->get_X(), this->red->get_Y(), this->map_sketch);
+	// walls[1] = map_collision(0, 0, this->red->get_X(), this->red->get_Y() - PACMAN_SPEED, this->map_sketch);
+	// walls[2] = map_collision(0, 0, this->red->get_X() - PACMAN_SPEED, this->red->get_Y(), this->map_sketch);
+	// walls[3] = map_collision(0, 0, this->red->get_X(), PACMAN_SPEED + this->red->get_Y(), this->map_sketch);
+    this->red->mover(&this->map_sketch);
+    if(this->pacman->getInvencibility() != this->pacmanSituation){
+         this->red->setIsFrightened();
+         this->pacmanSituation = !(this->pacmanSituation);
+    }
 }
 
 void Game::updateText(){
@@ -152,6 +223,9 @@ void Game::renderMap(sf::RenderTarget& target){
                 case Type::pacman:
                     this->renderPacman(*this->window);
                     break;
+                case Type::ghost:
+                    this->renderGhost(*this->window);
+                    break;
                 default:
                     break;
                 }
@@ -166,6 +240,14 @@ void Game::renderPacman(sf::RenderTarget& target){
 	PelletEater.setFillColor(sf::Color(255,255,0));
     PelletEater.setPosition(static_cast<float>(this->pacman->get_X() * CELL_SIZE), static_cast<float>(this->pacman->get_Y() * CELL_SIZE));
     target.draw(PelletEater);
+}
+
+void Game::renderGhost(sf::RenderTarget& target){
+    sf::RectangleShape rectangle(sf::Vector2f(15.f, 15.f));
+    if(this->pacmanSituation) rectangle.setFillColor(sf::Color(0,100,0));
+    else rectangle.setFillColor(sf::Color(255,0,0));
+    rectangle.setPosition(static_cast<float>(this->red->get_X() * CELL_SIZE), static_cast<float>(this->red->get_Y() * CELL_SIZE));
+    target.draw(rectangle);
 }
 
 void Game::renderText(sf::RenderTarget& target){

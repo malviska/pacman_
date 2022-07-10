@@ -2,7 +2,7 @@
 
 //Mapa é std::vector<std::vector<Object*>>
 //Map é a classe
-Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac){
+Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac, Ghost& ghost){
     /*
         função responsável por ler o arquivo txt
         que contem o mapa e montar 
@@ -41,6 +41,10 @@ Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac){
                 //4 representa um fantasma
                     Ob = new Object(Type::ghost);
                     output_map[j].push_back(Ob);
+                    ghost.set_X(i);
+                    ghost.set_Y(j);
+                    ghost.set_X_init(i);
+                    ghost.set_Y_init(j);
                     break;
                 case '5':
                 //5 representa o pacman
