@@ -318,7 +318,7 @@ void Game::renderGhost(sf::RenderTarget& target, int id){
     if(this->pacmanSituation) rectangle.setFillColor(sf::Color(0,100,0));
     switch (id){
         case 0:
-            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(255,0,0));
+            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(255,1,1));
             rectangle.setPosition(static_cast<float>(this->red->get_X() * CELL_SIZE), static_cast<float>(this->red->get_Y() * CELL_SIZE));
             break;
         case 1:
