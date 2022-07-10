@@ -47,11 +47,12 @@ class Game{
 
         void renderMap(sf::RenderTarget& target);
         void renderPacman(sf::RenderTarget& target);
-        void renderGhost(sf::RenderTarget& target);
+        void renderGhost(sf::RenderTarget& target, int ghost);
         void renderText(sf::RenderTarget& target);
         void renderGameOver(sf::RenderTarget& target);
         void render();   
-        void changePacmanSituation();
+        double distance(Pacman&, Ghost&);
+        std::array<double, 4> verifyDistances();
 
 };
 

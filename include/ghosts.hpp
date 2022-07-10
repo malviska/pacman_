@@ -8,7 +8,6 @@
 class Ghost : public Personagem{
     private:
         bool isFrightened = false;
-        short id;
     public:
         Ghost();
         void update();

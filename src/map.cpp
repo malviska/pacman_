@@ -2,7 +2,7 @@
 
 //Mapa é std::vector<std::vector<Object*>>
 //Map é a classe
-Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac, Ghost& ghost){
+Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac, Ghost& red, Ghost& blue, Ghost& pink, Ghost& orange){
     /*
         função responsável por ler o arquivo txt
         que contem o mapa e montar 
@@ -39,40 +39,40 @@ Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac, Ghost& ghost){
                     break;                  
                 case '4':
                 //4 representa um fantasma
-                    Ob = new Object(Type::ghost);
+                    Ob = new Object(Type::red);
                     output_map[j].push_back(Ob);
-                    ghost.set_X(i);
-                    ghost.set_Y(j);
-                    ghost.set_X_init(i);
-                    ghost.set_Y_init(j);
+                    red.set_X(i);
+                    red.set_Y(j);
+                    red.set_X_init(i);
+                    red.set_Y_init(j);
                     break;
-                // case '7':
-                // //4 representa um fantasma
-                //     Ob = new Object(Type::ghost);
-                //     output_map[j].push_back(Ob);
-                //     ghost.set_X(i);
-                //     ghost.set_Y(j);
-                //     ghost.set_X_init(i);
-                //     ghost.set_Y_init(j);
-                //     break;
-                // case '8':
-                // //4 representa um fantasma
-                //     Ob = new Object(Type::ghost);
-                //     output_map[j].push_back(Ob);
-                //     ghost.set_X(i);
-                //     ghost.set_Y(j);
-                //     ghost.set_X_init(i);
-                //     ghost.set_Y_init(j);
-                //     break;
-                // case '9':
-                // //4 representa um fantasma
-                //     Ob = new Object(Type::ghost);
-                //     output_map[j].push_back(Ob);
-                //     ghost.set_X(i);
-                //     ghost.set_Y(j);
-                //     ghost.set_X_init(i);
-                //     ghost.set_Y_init(j);
-                //     break;
+                case '7':
+                //4 representa um fantasma
+                    Ob = new Object(Type::blue);
+                    output_map[j].push_back(Ob);
+                    blue.set_X(i);
+                    blue.set_Y(j);
+                    blue.set_X_init(i);
+                    blue.set_Y_init(j);
+                    break;
+                case '8':
+                //4 representa um fantasma
+                    Ob = new Object(Type::pink);
+                    output_map[j].push_back(Ob);
+                    pink.set_X(i);
+                    pink.set_Y(j);
+                    pink.set_X_init(i);
+                    pink.set_Y_init(j);
+                    break;
+                case '9':
+                //4 representa um fantasma
+                    Ob = new Object(Type::orange);
+                    output_map[j].push_back(Ob);
+                    orange.set_X(i);
+                    orange.set_Y(j);
+                    orange.set_X_init(i);
+                    orange.set_Y_init(j);
+                    break;
                 case '5':
                 //5 representa o pacman
                     Ob = new Object(Type::pacman);

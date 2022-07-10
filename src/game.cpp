@@ -26,9 +26,12 @@ void Game::initPacman(){
 
     this->pacman = new Pacman();
     this->red = new Ghost();
+    this->blue = new Ghost();
+    this->pink = new Ghost();
+    this->orange = new Ghost();
     this->File.open("./data/mapa.txt");
     Map m;
-    this->map_sketch = m.ler_mapa(this->File, *this->pacman, *this->red);
+    this->map_sketch = m.ler_mapa(this->File, *this->pacman, *this->red, *this->blue, *this->pink, *this->orange);
     this->File.close();
 }
 
@@ -99,21 +102,56 @@ void Game::update(){
         this->updateText();
     }
 }
+double Game::distance(Pacman& pac, Ghost& ghs){
+    double dis = sqrt(pow(pac.get_X() - ghs.get_X(), 2) + pow(pac.get_Y() - ghs.get_Y(), 2));
+    return dis;
+}
+std::array<double, 4> Game::verifyDistances(){
+    double dis1 = this->distance(*pacman, *red);
+    double dis2 = this->distance(*pacman, *blue);
+    double dis3 = this->distance(*pacman, *pink);
+    double dis4 = this->distance(*pacman, *orange);
+    return {dis1, dis2, dis3, dis4};
+}
+
+
 
 void Game::updatePacman(){
     this->pacman->unsetInvensibility();
     std::array<bool,4> walls{};
-    if(this->pacman->get_X() == this->red->get_X() && this->pacman->get_Y() == this->red->get_Y()){
-        if(!this->pacman->getInvencibility()){
-        this->pacman->lose_life();
-        this->pacman->set_X(this->pacman->get_X_init() +1);
-        this->pacman->set_Y(this->pacman->get_Y_init() +1);
-        this->pacman->setDirection(0);
-        }else{
-           this->pacman->sumScore();
-            this->red->set_X(this->red->get_X_init());
-            this->red->set_Y(this->red->get_Y_init());
-            this->red->setIsFrightened();
+    std::array<double, 4> distances; 
+    distances = this->verifyDistances();
+    for(int i = 0; i<4; i++){
+        if(distances[i]<=1){
+            if(!this->pacman->getInvencibility()){
+                this->pacman->lose_life();
+                this->pacman->set_X(this->pacman->get_X_init() +1);
+                this->pacman->set_Y(this->pacman->get_Y_init() +1);
+                this->pacman->setDirection(0);
+            }else{
+                this->pacman->sumScore();
+                switch(i){
+                    case 0:
+                        this->red->set_X(this->red->get_X_init());
+                        this->red->set_Y(this->red->get_Y_init());
+                        this->red->setIsFrightened();
+                    break;
+                    case 1:
+                        this->blue->set_X(this->blue->get_X_init());
+                        this->blue->set_Y(this->blue->get_Y_init());
+                        this->blue->setIsFrightened();
+                    break;
+                    case 2:
+                        this->pink->set_X(this->pink->get_X_init());
+                        this->pink->set_Y(this->pink->get_Y_init());
+                        this->pink->setIsFrightened();
+                    break;
+                    case 3:
+                        this->orange->set_X(this->orange->get_X_init());
+                        this->orange->set_Y(this->orange->get_Y_init());
+                        this->orange->setIsFrightened();
+                }
+            }
         }
     }
     //verifica qual direção o jogador está pressionando
@@ -149,28 +187,57 @@ void Game::updatePacman(){
         this->pacman->mover(&this->map_sketch);
         this->pacman->comer(&this->map_sketch);
     }
-    if(this->pacman->get_X() == this->red->get_X() && this->pacman->get_Y() == this->red->get_Y()){
-        if(!this->pacman->getInvencibility()){
-        this->pacman->lose_life();
-        this->pacman->set_X(this->pacman->get_X_init() +1);
-        this->pacman->set_Y(this->pacman->get_Y_init() +1);
-        this->pacman->setDirection(0);
-        }else{
-            this->pacman->sumScore();
-            this->red->set_X(this->red->get_X_init());
-            this->red->set_Y(this->red->get_Y_init());
-            this->red->setIsFrightened();
+    distances = this->verifyDistances();
+    for(int i = 0; i<4; i++){
+        if(distances[i]<=1){
+            if(!this->pacman->getInvencibility()){
+                this->pacman->lose_life();
+                this->pacman->set_X(this->pacman->get_X_init() +1);
+                this->pacman->set_Y(this->pacman->get_Y_init() +1);
+                this->pacman->setDirection(0);
+            }else{
+                this->pacman->sumScore();
+                switch(i){
+                    case 0:
+                        this->red->set_X(this->red->get_X_init());
+                        this->red->set_Y(this->red->get_Y_init());
+                        this->red->setIsFrightened();
+                    break;
+                    case 1:
+                        this->blue->set_X(this->blue->get_X_init());
+                        this->blue->set_Y(this->blue->get_Y_init());
+                        this->blue->setIsFrightened();
+                    break;
+                    case 2:
+                        this->pink->set_X(this->pink->get_X_init());
+                        this->pink->set_Y(this->pink->get_Y_init());
+                        this->pink->setIsFrightened();
+                    break;
+                    case 3:
+                        this->orange->set_X(this->orange->get_X_init());
+                        this->orange->set_Y(this->orange->get_Y_init());
+                        this->orange->setIsFrightened();
+                }
+            }
         }
     }
 }
 
 
 void Game::updateGhost(){
-    this->red->mover(&this->map_sketch);
     if(this->pacman->getInvencibility() != this->pacmanSituation){
-        if(this->pacman->getInvencibility()) this->red->setIsFrightened();
         this->pacmanSituation = !(this->pacmanSituation);
+        if(this->pacman->getInvencibility()){
+            this->red->setIsFrightened();
+            this->blue->setIsFrightened();
+            this->pink->setIsFrightened();
+            this->orange->setIsFrightened();
+        }
     }
+    this->red->mover(&this->map_sketch);
+    this->blue->mover(&this->map_sketch);
+    this->pink->mover(&this->map_sketch);
+    this->orange->mover(&this->map_sketch);
 }
 
 void Game::updateText(){
@@ -218,8 +285,17 @@ void Game::renderMap(sf::RenderTarget& target){
                 case Type::pacman:
                     this->renderPacman(*this->window);
                     break;
-                case Type::ghost:
-                    this->renderGhost(*this->window);
+                case Type::red:
+                    this->renderGhost(*this->window,0);
+                    break;
+                case Type::blue:
+                    this->renderGhost(*this->window,1);
+                    break;
+                case Type::pink:
+                    this->renderGhost(*this->window,2);
+                    break;
+                case Type::orange:
+                    this->renderGhost(*this->window,3);
                     break;
                 default:
                     break;
@@ -237,11 +313,27 @@ void Game::renderPacman(sf::RenderTarget& target){
     target.draw(PelletEater);
 }
 
-void Game::renderGhost(sf::RenderTarget& target){
+void Game::renderGhost(sf::RenderTarget& target, int id){
     sf::RectangleShape rectangle(sf::Vector2f(15.f, 15.f));
     if(this->pacmanSituation) rectangle.setFillColor(sf::Color(0,100,0));
-    else rectangle.setFillColor(sf::Color(255,0,0));
-    rectangle.setPosition(static_cast<float>(this->red->get_X() * CELL_SIZE), static_cast<float>(this->red->get_Y() * CELL_SIZE));
+    switch (id){
+        case 0:
+            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(255,0,0));
+            rectangle.setPosition(static_cast<float>(this->red->get_X() * CELL_SIZE), static_cast<float>(this->red->get_Y() * CELL_SIZE));
+            break;
+        case 1:
+            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(100,100,255));
+            rectangle.setPosition(static_cast<float>(this->blue->get_X() * CELL_SIZE), static_cast<float>(this->blue->get_Y() * CELL_SIZE));
+            break;
+        case 2:
+            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(255,192,202));
+            rectangle.setPosition(static_cast<float>(this->pink->get_X() * CELL_SIZE), static_cast<float>(this->pink->get_Y() * CELL_SIZE));
+            break;
+        case 3:
+            if(!this->pacmanSituation) rectangle.setFillColor(sf::Color(255,140,0));
+            rectangle.setPosition(static_cast<float>(this->orange->get_X() * CELL_SIZE), static_cast<float>(this->orange->get_Y() * CELL_SIZE));
+            break;
+    }
     target.draw(rectangle);
 }
 

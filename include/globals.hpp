@@ -16,7 +16,10 @@ enum Type{
     wall,
     food,
     drug,
-    ghost,
+    red,
+	blue,
+	pink,
+	orange,
     pacman,
     door,
 };
