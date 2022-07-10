@@ -10,11 +10,15 @@ void Ghost::mover(Mapa* map){
         função responsável pela movimentação do pacman
         recebe a direção e o rascunho do mapa do jogo
     */
+    std::pair<int,int> useDoor = {10,10};
+    if(this->coord_atual.getPair() == useDoor){
+        this->direction = 1;
+    }
     std::array<bool,4> walls{};
-    walls[0] = map_collision(0, 0, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
-	walls[1] = map_collision(0, 0, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
-	walls[2] = map_collision(0, 0, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
-	walls[3] = map_collision(0, 0, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
+    walls[0] = map_collision(0, 1, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
+	walls[1] = map_collision(0, 1, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
+	walls[2] = map_collision(0, 1, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
+	walls[3] = map_collision(0, 1, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
     if (0 == walls[direction])
 	{
             switch (direction)
@@ -53,7 +57,6 @@ void Ghost::mover(Mapa* map){
         }
     }else{
         this->direction = rand() %4;
-        this->mover(map);
     }
 }
 
