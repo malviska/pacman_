@@ -1,5 +1,6 @@
 #include "../include/game.hpp"
 
+std::chrono::microseconds limitPacmanInvencibility = std::chrono::microseconds(100000);
 Game::Game(){
     //inicializa o jogo
     this->initPacman();
@@ -100,6 +101,7 @@ void Game::update(){
 }
 
 void Game::updatePacman(){
+    this->pacman->unsetInvensibility();
     std::array<bool,4> walls{};
     if(this->pacman->get_X() == this->red->get_X() && this->pacman->get_Y() == this->red->get_Y()){
         if(!this->pacman->getInvencibility()){
@@ -112,7 +114,6 @@ void Game::updatePacman(){
             this->red->set_X(this->red->get_X_init());
             this->red->set_Y(this->red->get_Y_init());
             this->red->setIsFrightened();
-            this->pacman->setInvencibility();
         }
     }
     //verifica qual direção o jogador está pressionando
@@ -159,7 +160,6 @@ void Game::updatePacman(){
             this->red->set_X(this->red->get_X_init());
             this->red->set_Y(this->red->get_Y_init());
             this->red->setIsFrightened();
-            this->pacman->setInvencibility();
         }
     }
 }
@@ -168,8 +168,8 @@ void Game::updatePacman(){
 void Game::updateGhost(){
     this->red->mover(&this->map_sketch);
     if(this->pacman->getInvencibility() != this->pacmanSituation){
-         this->red->setIsFrightened();
-         this->pacmanSituation = !(this->pacmanSituation);
+        if(this->pacman->getInvencibility()) this->red->setIsFrightened();
+        this->pacmanSituation = !(this->pacmanSituation);
     }
 }
 

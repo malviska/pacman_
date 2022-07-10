@@ -11,7 +11,6 @@ bool map_collision(bool i_collect_pellets, bool i_use_door, int i_x, int i_y, st
 	//Getting the exact position.
 	int cell_x = i_x;
 	int cell_y = i_y;
-    std::cout<<"\n"<<cell_x << " "<<cell_y<<"\n";
 
 	//A ghost/Pacman can intersect 4 Types at most.
 	// for (unsigned char a = 0; a < 4; a++)
@@ -56,7 +55,6 @@ bool map_collision(bool i_collect_pellets, bool i_use_door, int i_x, int i_y, st
         {
             if (i_map[y][x]->get_type_int() == 1)
             {
-                std::cout<<(i_map[y][x]->get_type_int());
                 output = true;
             }
             else if (0 == i_use_door && Type::door == i_map[y][x]->get_type())
@@ -80,6 +78,5 @@ bool map_collision(bool i_collect_pellets, bool i_use_door, int i_x, int i_y, st
 		    // }
 	}
 	// }
-    std::cout<<output;
 	return output;
 }

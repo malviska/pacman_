@@ -2,7 +2,7 @@
 
 int main(){
     std::ifstream File;
-    File.open("mapa.txt");
+    File.open("../data/mapa.txt");
     Map map;
     Pacman *pacman = new Pacman();
     Mapa mapinha = map.ler_mapa(File, *pacman);

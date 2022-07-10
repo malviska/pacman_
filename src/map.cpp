@@ -46,6 +46,33 @@ Mapa Map::ler_mapa(std::ifstream& file, Pacman& pac, Ghost& ghost){
                     ghost.set_X_init(i);
                     ghost.set_Y_init(j);
                     break;
+                // case '7':
+                // //4 representa um fantasma
+                //     Ob = new Object(Type::ghost);
+                //     output_map[j].push_back(Ob);
+                //     ghost.set_X(i);
+                //     ghost.set_Y(j);
+                //     ghost.set_X_init(i);
+                //     ghost.set_Y_init(j);
+                //     break;
+                // case '8':
+                // //4 representa um fantasma
+                //     Ob = new Object(Type::ghost);
+                //     output_map[j].push_back(Ob);
+                //     ghost.set_X(i);
+                //     ghost.set_Y(j);
+                //     ghost.set_X_init(i);
+                //     ghost.set_Y_init(j);
+                //     break;
+                // case '9':
+                // //4 representa um fantasma
+                //     Ob = new Object(Type::ghost);
+                //     output_map[j].push_back(Ob);
+                //     ghost.set_X(i);
+                //     ghost.set_Y(j);
+                //     ghost.set_X_init(i);
+                //     ghost.set_Y_init(j);
+                //     break;
                 case '5':
                 //5 representa o pacman
                     Ob = new Object(Type::pacman);

@@ -3,12 +3,14 @@
 
 #include "personagem.hpp"
 #include <string>
+#include <ctime>
 
 class Pacman : public Personagem{
     private:
         unsigned score = 0;
         short lifes = 3;
         bool invencibility = false;
+        clock_t invencibilityTimer;
     public:
         Pacman();
         //virtual void reviver() override;
@@ -22,6 +24,7 @@ class Pacman : public Personagem{
         void timeInvencibility();
         bool getInvencibility();
         void sumScore();
+        void unsetInvensibility();
 };
 
 #endif

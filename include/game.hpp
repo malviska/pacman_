@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "map.hpp"
+#include <chrono>
 #include <sstream>
 #include <SFML/Graphics.hpp>
 #include "ghosts.hpp"
@@ -17,7 +18,6 @@ class Game{
         
         sf::Text uiText;
         sf::Text GOText;
-        
         Pacman *pacman;
         Ghost *red;
         Ghost *blue;
