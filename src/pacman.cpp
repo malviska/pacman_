@@ -54,7 +54,7 @@ void Pacman::comer(Mapa* map){
         Food *Eat = dynamic_cast<Food*>((*map)[this->get_Y()][this->get_X()]);
         this->score += Eat->get_points(); 
         if(Eat->get_type() == Type::drug){
-            this->setInvencibility();
+            if(!(this->invencibility)) this->setInvencibility();
         }
         Eat->eaten();
         //apos o pacman comer a celula ela deve sumir e o espaço será ocupado pelo pacman

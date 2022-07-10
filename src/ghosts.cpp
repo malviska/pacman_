@@ -10,72 +10,50 @@ void Ghost::mover(Mapa* map){
         função responsável pela movimentação do pacman
         recebe a direção e o rascunho do mapa do jogo
     */
-    switch(direction){
-        case 0:
-           if(this->get_X() + 1 < MAP_WIDTH && (*map)[this->get_Y()][this->get_X() +1]->get_type() != Type::wall){
-                Object ob = (*map)[this->get_Y()][this->get_X() +1]->get_type();
-                //desaloca o espaço de memória no qual o pacman se encontrava e o substitui por um espaço em branco
-                // delete (*map)[this->get_Y()][this->get_X()];
-                // (*map)[this->get_Y()][this->get_X()] = &ob;
-                //move o pacman para o próximo bloco de acordo com a cordenada    
-                // delete (*map)[this->get_Y()][this->get_X()+1];
-                // (*map)[this->get_Y()][this->get_X()+1] = new Object(Type::ghost);            
-                this->set_X(this->get_X() + 1);
-                //caso tenha uma peça na nova posição o pacman deve come-la
-           }else {
-                this->setDirection(rand()%4);
-            }
-            break;
-        case 1:
-            if(this->get_X() - 1 >= 0 && (*map)[this->get_Y()][this->get_X() - 1]->get_type() != Type::wall){
-                Object ob = (*map)[this->get_Y()][this->get_X() -1]->get_type();
-                //desaloca o espaço de memória no qual o pacman se encontrava e o substitui por um espaço em branco
-                // delete (*map)[this->get_Y()][this->get_X()];
-                // (*map)[this->get_Y()][this->get_X()] = &ob;
-                // delete (*map)[this->get_Y()][this->get_X() - 1];
-                // (*map)[this->get_Y()][this->get_X()-1] = new Object(Type::ghost);
-                //move o pacman para o próximo bloco de acordo com a cordenada                
-                this->set_X(this->get_X() - 1);
-                //caso tenha uma peça na nova posição o pacman deve come-la
-            }
-            else{
-                this->setDirection(rand()%4);
-            }
-            break;
-        case 2:
-            if((*map)[this->get_Y() + 1][this->get_X()]->get_type() != Type::wall){
-                Object ob = (*map)[this->get_Y()+1][this->get_X()]->get_type();
-                //desaloca o espaço de memória no qual o pacman se encontrava e o substitui por um espaço em branco
-                // delete (*map)[this->get_Y()][this->get_X()];
-                // (*map)[this->get_Y()][this->get_X()] = &ob;
-                // delete (*map)[this->get_Y() + 1][this->get_X()];
-                // (*map)[this->get_Y()+ 1][this->get_X()] = new Object(Type::ghost);
-                this->set_Y(this->get_Y() + 1);
-                //caso tenha uma peça na nova posição o pacman deve come-la
-                this->comer(map);
-            }
-            else{
-                this->setDirection(rand()%4);
-            }
-            break;
-        case 3:
-            if((*map)[this->get_Y() - 1][this->get_X()]->get_type() != Type::wall){
-                Object ob = (*map)[this->get_Y() - 1][this->get_X()]->get_type();
-                //desaloca o espaço de memória no qual o pacman se encontrava e o substitui por um espaço em branco
-                // delete (*map)[this->get_Y()][this->get_X()];
-                // (*map)[this->get_Y()][this->get_X()] = &ob;
-                // delete (*map)[this->get_Y() -1][this->get_X()];
-                // (*map)[this->get_Y()- 1][this->get_X()] = new Object(Type::ghost);
-                //move o pacman para o próximo bloco de acordo com a cordenada
-                this->set_Y(this->get_Y() - 1);
-                //caso tenha uma peça na nova posição o pacman deve come-la
-                this->comer(map);
+    std::array<bool,4> walls{};
+    walls[0] = map_collision(0, 0, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
+	walls[1] = map_collision(0, 0, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
+	walls[2] = map_collision(0, 0, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
+	walls[3] = map_collision(0, 0, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
+    if (0 == walls[direction])
+	{
+            switch (direction)
+        {
+            case 0:
+            {
+                this->set_X(PACMAN_SPEED + this->get_X());
 
+                break;
             }
-             else {
-                this->setDirection(rand()%4);
+            case 1:
+            {
+                this->set_Y(this->get_Y() - PACMAN_SPEED);
+
+                break;
             }
-            break;
+            case 2:
+            {
+                this->set_X(this->get_X() - PACMAN_SPEED);
+
+                break;
+            }
+            case 3:
+            {
+                this->set_Y(this->get_Y() + PACMAN_SPEED);
+            }
+        }
+
+        if (this->get_X()<0)
+        {
+            this->set_X(MAP_WIDTH - 1);
+        }
+        else if (MAP_WIDTH <= this->get_X())
+        {
+            this->set_X(0);
+        }
+    }else{
+        this->direction = rand() %4;
+        this->mover(map);
     }
 }
 

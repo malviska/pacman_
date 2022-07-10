@@ -166,11 +166,6 @@ void Game::updatePacman(){
 
 
 void Game::updateGhost(){
-    std::array<bool,4> walls{};
-    // walls[0] = map_collision(0, 0, PACMAN_SPEED + this->red->get_X(), this->red->get_Y(), this->map_sketch);
-	// walls[1] = map_collision(0, 0, this->red->get_X(), this->red->get_Y() - PACMAN_SPEED, this->map_sketch);
-	// walls[2] = map_collision(0, 0, this->red->get_X() - PACMAN_SPEED, this->red->get_Y(), this->map_sketch);
-	// walls[3] = map_collision(0, 0, this->red->get_X(), PACMAN_SPEED + this->red->get_Y(), this->map_sketch);
     this->red->mover(&this->map_sketch);
     if(this->pacman->getInvencibility() != this->pacmanSituation){
          this->red->setIsFrightened();
