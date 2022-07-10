@@ -1,15 +1,17 @@
 #ifndef COORDENADA_H
 #define COORDENADA_H
 
-struct Coordenada
-{
-    short x;
-    short y;
-
-    bool operator==(const Coordenada& _coord)
-    {
-        return this->x == _coord.x && this->y == _coord.y;
-    }
+class Coordenada{
+    private:
+        int x;
+        int y;
+    public:
+        Coordenada();
+        int get_X();
+        int get_Y();
+        void set_X(int _x);
+        void set_Y(int _y);
 };
+
 
 #endif

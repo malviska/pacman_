@@ -1,35 +1,24 @@
-#include<SFML/Graphics.hpp>
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
-constexpr unsigned char MAP_HEIGHT = 21;
-constexpr unsigned char MAP_WIDTH = 21;
-constexpr unsigned char CELL_SIZE = 16;
-constexpr unsigned char SCREEN_RESIZE = 2;
-constexpr unsigned char FONT_HEIGHT = 16;
-constexpr unsigned int PACMAN_SPEED = 10;
+constexpr int MAP_HEIGHT = 21;
+constexpr int MAP_WIDTH = 21;
+constexpr int CELL_SIZE = 16;
+constexpr int FOOD_POINTS = 10;
+constexpr int DRUG_POINTS = 100;
+constexpr int SCREEN_RESIZE = 2;
+constexpr int FONT_HEIGHT = 16;
+constexpr int TUNEL_HEIGHT = 9;
 
 
-enum Cell
-{
-	Door,
-	Empty,
-	Energizer,
-	Pellet,
-	Wall
+enum Type{
+    blank,
+    wall,
+    food,
+    drug,
+    ghost,
+    pacman,
+    door,
 };
-// std::ostream& operator<<(std::ostream& out, const Cell value){
-//     static std::map<Cell, std::string> strings;
-//     if (strings.size() == 0){
-// #define INSERT_ELEMENT(p) strings[p] = #p
-//         INSERT_ELEMENT(Door);     
-//         INSERT_ELEMENT(Empty);     
-//         INSERT_ELEMENT(Energizer);
-// 		INSERT_ELEMENT(Pellet);
-// 		INSERT_ELEMENT(Wall);     
-// #undef INSERT_ELEMENT
-//     }
-// }
 
 #endif
-

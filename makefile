@@ -1,44 +1,39 @@
-CC = g++
-CFLAGS=-std=c++11 -g -w -Wall
-SFMLFLAGS=-lsfml-graphics -lsfml-window -lsfml-system
-TARGET= pacman.o
-TARGET2= test.o
+C = g++
+W = -std=c++11 -Wall
 
-BUILD_DIR = ./build
-SRC_DIR = ./src
-INCLUDE_DIR = ./include
-TESTS_DIR = ./tests
-BUILD_TESTS_DIR = ./build_tests
+B = ./build
+I = ./include
+S = ./src
+T = ./test
 
-# ${TARGET}: ${BUILD_DIR}/*.o
-# 	${CC} ${CFLAGS} -o ${TARGET} ${BUILD_DIR}/*.o ${SFMLFLAGS}
-testCellMaker: ${BUILD_DIR}/pacman.o ${BUILD_TESTS_DIR}/cell_maker.test.o 
-	${CC} ${CFLAGS} -o ${BUILD_TESTS_DIR}/testCellMaker.o ${BUILD_DIR}/cell_maker.o ${BUILD_DIR}/pacman.o ${BUILD_TESTS_DIR}/cell_maker.test.o 
+SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
-testMapa: ${BUILD_DIR}/pacman.o ${BUILD_DIR}/cell_maker.o ${BUILD_DIR}/mapa.o ${BUILD_TESTS_DIR}/mapa.test.o ${BUILD_DIR}/personagem.o
-	${CC} ${CFLAGS} -o ${BUILD_TESTS_DIR}/testMapa.o  ${BUILD_DIR}/cell_maker.o ${BUILD_DIR}/pacman.o ${BUILD_DIR}/mapa.o ${BUILD_TESTS_DIR}/mapa.test.o ${BUILD_DIR}/personagem.o ${SFMLFLAGS}
+all: main
 
-${BUILD_TESTS_DIR}/mapa.test.o: ${BUILD_DIR}/mapa.o ${BUILD_DIR}/pacman.o ${BUILD_DIR}/cell_maker.o 
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${TESTS_DIR}/mapa.test.cpp -o ${BUILD_TESTS_DIR}/mapa.test.o ${SFMLFLAGS}
+main_test:${B}/main_test.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/personagem.o ${B}/coordenada.o 
+	${C} ${W} ${B}/*.o -o main_test
 
-${BUILD_TESTS_DIR}/cell_maker.test.o: ${BUILD_DIR}/cell_maker.o ${BUILD_DIR}/pacman.o
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${TESTS_DIR}/cell_maker.test.cpp -o ${BUILD_TESTS_DIR}/cell_maker.test.o 
+main: ${B}/main.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/personagem.o ${B}/coordenada.o ${B}/game.o
+	${C} ${W} ${B}/*.o -o main ${SFML}
 
-${BUILD_DIR}/cell_maker.o: ${INCLUDE_DIR}/cell_maker.hpp ${SRC_DIR}/cell_maker.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${SRC_DIR}/cell_maker.cpp -o ${BUILD_DIR}/cell_maker.o
+${B}/main_test.o: ${T}/main_test.cpp
+	${C} ${W} -c ${T}/main_test.cpp -o ${B}/main_test.o
+${B}/main.o: main.cpp
+	${C} ${W} -c main.cpp -o ${B}/main.o
+${B}/coordenada.o: ${I}/coordenada.hpp ${S}/coordenada.cpp
+	${C} ${W} -c ${S}/coordenada.cpp -o ${B}/coordenada.o
+${B}/food.o: ${I}/food.hpp ${S}/food.cpp
+	${C} ${W} -c ${S}/food.cpp -o ${B}/food.o
+${B}/map.o: ${I}/map.hpp ${S}/map.cpp
+	${C} ${W} -c ${S}/map.cpp -o ${B}/map.o
+${B}/object.o: ${I}/object.hpp ${S}/object.cpp
+	${C} ${W} -c ${S}/object.cpp -o ${B}/object.o
+${B}/pacman.o: ${I}/pacman.hpp ${S}/pacman.cpp
+	${C} ${W} -c ${S}/pacman.cpp -o ${B}/pacman.o
+${B}/personagem.o: ${I}/personagem.hpp ${S}/personagem.cpp
+	${C} ${W} -c ${S}/personagem.cpp -o ${B}/personagem.o
+${B}/game.o: ${I}/game.hpp ${S}/game.cpp
+	${C} ${W} -c ${S}/game.cpp -o ${B}/game.o
 
-${BUILD_DIR}/pacman.o: ${INCLUDE_DIR}/pacman.hpp ${SRC_DIR}/pacman.cpp 
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${SRC_DIR}/pacman.cpp -o ${BUILD_DIR}/pacman.o 
-
-${BUILD_DIR}/personagem.o: ${INCLUDE_DIR}/personagem.hpp ${SRC_DIR}/personagem.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${SRC_DIR}/personagem.cpp -o ${BUILD_DIR}/personagem.o
-
-${BUILD_DIR}/mapa.o: ${INCLUDE_DIR}/mapa.hpp ${SRC_DIR}/mapa.cpp
-	${CC} ${CFLAGS} -I ${INCLUDE_DIR} -c ${SRC_DIR}/mapa.cpp -o ${BUILD_DIR}/mapa.o ${SFMLFLAGS}
-
-
-# Rule for cleaning files generated during compilation. 
-# Call 'make clean' to use it
-clean:
-	rm -f ${BUILD_DIR}/* ${BUILD_TESTS_DIR}/*
-
+clear:
+	rm -f ${B}/*.o
