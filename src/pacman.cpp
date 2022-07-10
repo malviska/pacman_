@@ -99,5 +99,5 @@ unsigned Pacman::get_score(){
 }
 
 void Pacman::sumScore(){
-    this->score += 100;
+    this->score += 1000;
 }
