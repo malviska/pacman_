@@ -23,8 +23,8 @@ void Menu::set_values(){
     pos = 0;
     pressed = theselect = false;
 
-    font->loadFromFile("./assets/ethn.otf");
-    image->loadFromFile("./assets/background.png");
+    font->loadFromFile("./data/ethn.otf");
+    image->loadFromFile("./data/background.png");
     bg->setTexture(*image);
 
     options = {"Jogar", "Opcoes", "Recordes", "Sair"};
