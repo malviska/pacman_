@@ -11,9 +11,6 @@ class Menu {
         sf::Texture * image;
         sf::Sprite * bg;
 
-        sf::Vector2i pos_mouse;
-        sf::Vector2f mouse_coord;
-
         std::vector<const char *> options;
         std::vector<sf::Vector2f> coords;
         std::vector<sf::Text> texts;
