@@ -33,3 +33,7 @@ void Personagem::set_X_init(int _x){
 void Personagem::set_Y_init(int _x){
     this->coord_init.set_Y(_x);
 }
+
+int Personagem::getDirection(){
+    return this->direction;
+}

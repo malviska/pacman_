@@ -20,3 +20,8 @@ void Coordenada::set_X(int _x){
 void Coordenada::set_Y(int _y){
     this->y = _y;
 }
+
+std::pair<int,int> Coordenada::getPair(){
+    std::pair<int,int> p = {this->x, this->y};
+    return p;
+}
