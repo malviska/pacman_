@@ -8,6 +8,7 @@ Food::Food() : Object(Type::food){
 
 Food::Food(Type tipo) : Object(tipo){
     Food::count++;
+    
     this->points = DRUG_POINTS;
 }
 

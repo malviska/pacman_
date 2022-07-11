@@ -49,17 +49,15 @@ bool map_collision(bool i_collect_pellets, bool i_use_door, int i_x, int i_y, st
 		// }
 
 		// Making sure that the position is inside the map.
-    if (0 <= x && 0 <= y && MAP_HEIGHT > y && MAP_WIDTH > x)
-    {
-        if (0 == i_collect_pellets) //Here we only care about the walls.
-        {
-            if (i_map[y][x]->get_type_int() == 1)
-            {
+    if (0 <= x && 0 <= y && MAP_HEIGHT > y && MAP_WIDTH > x) {
+		//Here we only care about the walls.
+        if (0 == i_collect_pellets) {
+            if (i_map[y][x]->get_type_int() == 1) {
                 output = true;
-            }
-            else if (0 == i_use_door && Type::door == i_map[y][x]->get_type())
-            {
+
+            } else if (0 == i_use_door && Type::door == i_map[y][x]->get_type()) {
                 output = 1;
+				
             }
         }
 			// else //Here we only care about the collectables.

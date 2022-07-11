@@ -1,5 +1,6 @@
 #include "../include/pacman.hpp"
 #include <iostream>
+
 Pacman::Pacman(){
     this->lifes = 3;
     this->score = 0;
@@ -12,37 +13,35 @@ void Pacman::setDirection(short dir){
 void Pacman::mover(Mapa* map){
     switch (direction)
     {
-        case 0:
-        {
-            this->set_X(PACMAN_SPEED + this->get_X());
+        case 0: {
+            this->set_X(this->get_X() + PACMAN_SPEED);
 
             break;
         }
-        case 1:
-        {
+
+        case 1: {
             this->set_Y(this->get_Y() - PACMAN_SPEED);
 
             break;
         }
-        case 2:
-        {
+
+        case 2: {
             this->set_X(this->get_X() - PACMAN_SPEED);
 
             break;
         }
-        case 3:
-        {
+
+        case 3: {
             this->set_Y(this->get_Y() + PACMAN_SPEED);
         }
     }
 
-	if (this->get_X()<0)
-	{
+	if (this->get_X()<0) {
 		this->set_X(MAP_WIDTH - 1);
-	}
-	else if (MAP_WIDTH <= this->get_X())
-	{
+
+	} else if (MAP_WIDTH <= this->get_X()) {
 		this->set_X(0);
+
 	}
 }
 
@@ -52,15 +51,18 @@ void Pacman::comer(Mapa* map){
     (*map)[this->get_Y()][this->get_X()]->get_type() == Type::drug){
         //dinamic cast de Object para Food para termos acesso a pontuação dessa celula
         Food *Eat = dynamic_cast<Food*>((*map)[this->get_Y()][this->get_X()]);
-        this->score += Eat->get_points(); 
+        this->score += Eat->get_points();
+
         if(Eat->get_type() == Type::drug){
             if(!(this->invencibility)) this->setInvencibility();
         }
+
         Eat->eaten();
         //apos o pacman comer a celula ela deve sumir e o espaço será ocupado pelo pacman
         delete (*map)[this->get_Y()][this->get_X()];
         (*map)[this->get_Y()][this->get_X()] = new Object(Type::pacman);
-    }else{
+
+    } else {
         //caso não haja nada para comer o pacman simplesmente assume o espaço
         delete (*map)[this->get_Y()][this->get_X()];
         (*map)[this->get_Y()][this->get_X()] = new Object(Type::pacman);

@@ -18,11 +18,13 @@ class Game{
         
         sf::Text uiText;
         sf::Text GOText;
+
         Pacman *pacman;
         Ghost *red;
         Ghost *blue;
         Ghost *pink;
         Ghost *orange;
+
         std::ifstream File;
         Mapa map_sketch;
         bool pacmanSituation = false;
@@ -31,6 +33,7 @@ class Game{
         void initPacman();
         void initText();
         void initFonts();
+
     public:
         Game();
         virtual ~Game();
@@ -44,16 +47,15 @@ class Game{
         void updateText();
         void update();
 
-
         void renderMap(sf::RenderTarget& target);
         void renderPacman(sf::RenderTarget& target);
         void renderGhost(sf::RenderTarget& target, int ghost);
         void renderText(sf::RenderTarget& target);
         void renderGameOver(sf::RenderTarget& target);
-        void render();   
+        void render();
+         
         double distance(Pacman&, Ghost&);
         std::array<double, 4> verifyDistances();
-
 };
 
 #endif

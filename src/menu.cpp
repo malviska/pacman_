@@ -2,6 +2,7 @@
 
 Menu::Menu(){
     window = new sf::RenderWindow();
+
     font = new sf::Font();
     image = new sf::Texture();
     bg = new sf::Sprite();
@@ -45,7 +46,6 @@ void Menu::set_values(){
 }
 
 void Menu::loop_events(){
-
     sf::Event event;
 
     while(window->pollEvent(event)){
@@ -99,7 +99,6 @@ void Menu::loop_events(){
 }
 
 void Menu::draw_all(){
-
     window->clear();
 
     window->draw(*bg);
@@ -112,7 +111,6 @@ void Menu::draw_all(){
 }
 
 void Menu::run_menu(){
-
     while(window->isOpen()){
 
         loop_events();

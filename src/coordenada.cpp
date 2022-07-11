@@ -23,5 +23,6 @@ void Coordenada::set_Y(int _y){
 
 std::pair<int,int> Coordenada::getPair(){
     std::pair<int,int> p = {this->x, this->y};
+    
     return p;
 }
