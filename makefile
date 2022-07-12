@@ -1,5 +1,5 @@
 C = g++
-W = -std=c++11 -Wall
+W = -std=c++11 -Wall -ggdb3
 
 B = ./build
 I = ./include
