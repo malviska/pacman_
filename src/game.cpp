@@ -19,6 +19,10 @@ Game::~Game(){
     }
 
     delete this->pacman;
+    delete this->red;
+    delete this->blue;
+    delete this->pink;
+    delete this->orange;
     delete this->window;
 }
 

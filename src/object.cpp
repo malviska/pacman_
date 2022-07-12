@@ -8,7 +8,8 @@ Object::Object(Type tipo){
     this->type = tipo;
 }
 
-Object::~Object(){}
+Object::~Object(){
+}
 
 Type Object::get_type(){
     return this->type;
