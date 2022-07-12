@@ -25,4 +25,5 @@ class Menu {
         Menu();
         ~Menu();
         void run_menu();
+        void init_screen();
 };

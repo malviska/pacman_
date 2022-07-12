@@ -412,6 +412,8 @@ void Game::render(){
         this->uiText.setPosition(35, 250);
         this->uiText.setScale(2,2);
         this->renderText(*this->window);
+
+        this->window->close();
         
     }
 

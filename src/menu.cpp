@@ -1,4 +1,5 @@
 #include "../include/menu.hpp"
+#include "../include/game.hpp"
 
 Menu::Menu(){
     window = new sf::RenderWindow();
@@ -17,16 +18,20 @@ Menu::~Menu(){
     delete bg;
 }
 
-void Menu::set_values(){
+void Menu::init_screen(){
     window->create(sf::VideoMode(720, 600), "Pacman", sf::Style::Titlebar | sf::Style::Close);
     window->setPosition(sf::Vector2i(350,90));
-
-    pos = 0;
-    pressed = theselect = false;
 
     font->loadFromFile("./data/ethn.otf");
     image->loadFromFile("./data/background.png");
     bg->setTexture(*image);
+}
+
+void Menu::set_values(){
+    init_screen();
+
+    pos = 0;
+    pressed = theselect = false;
 
     options = {"Jogar", "Opcoes", "Recordes", "Sair"};
     texts.resize(4);
@@ -80,7 +85,14 @@ void Menu::loop_events(){
             theselect = true;
 
             if(pos == 0){
-
+                Game game;
+                window->close();
+                while (game.running())
+                {
+                    game.update();
+                    game.render();
+                }
+                init_screen();
             }
 
             if(pos == 1){

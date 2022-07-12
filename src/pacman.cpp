@@ -76,7 +76,6 @@ void Pacman::setInvencibility(){
 
 void Pacman::unsetInvensibility(){
     clock_t timer = clock();
-    std::cout <<"\n"<< (float)(timer - this->invencibilityTimer)/CLOCKS_PER_SEC<<"\n";
     if((float)(timer - this->invencibilityTimer)/CLOCKS_PER_SEC >  0.25) this->invencibility = false;
 }
 
