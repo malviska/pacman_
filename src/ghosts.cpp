@@ -19,10 +19,10 @@ void Ghost::mover(Mapa* map){
 
     std::array<bool,4> walls{};
 
-    walls[0] = map_collision(0, 1, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
-	walls[1] = map_collision(0, 1, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
-	walls[2] = map_collision(0, 1, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
-	walls[3] = map_collision(0, 1, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
+    walls[0] = map_collision(1, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
+	walls[1] = map_collision(1, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
+	walls[2] = map_collision(1, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
+	walls[3] = map_collision(1, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
 
     if (0 == walls[direction]) {
         switch (direction) {
