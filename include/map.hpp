@@ -11,8 +11,6 @@
 using Mapa = std::vector<std::vector<Object*>>;
 
 class Map{
-    private:
-
     public:
         Mapa ler_mapa(std::ifstream&, Pacman&, Ghost&, Ghost&, Ghost&, Ghost&);
 };

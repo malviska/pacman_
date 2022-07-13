@@ -181,10 +181,10 @@ void Game::updatePacman(){
     }
 
     //verifica qual direção o jogador está pressionando
-    walls[0] = map_collision(0, 0, PACMAN_SPEED + this->pacman->get_X(), this->pacman->get_Y(), this->map_sketch);
-	walls[1] = map_collision(0, 0, this->pacman->get_X(), this->pacman->get_Y() - PACMAN_SPEED, this->map_sketch);
-	walls[2] = map_collision(0, 0, this->pacman->get_X() - PACMAN_SPEED, this->pacman->get_Y(), this->map_sketch);
-	walls[3] = map_collision(0, 0, this->pacman->get_X(), PACMAN_SPEED + this->pacman->get_Y(), this->map_sketch);
+    walls[0] = map_collision(0, PACMAN_SPEED + this->pacman->get_X(), this->pacman->get_Y(), this->map_sketch);
+	walls[1] = map_collision(0, this->pacman->get_X(), this->pacman->get_Y() - PACMAN_SPEED, this->map_sketch);
+	walls[2] = map_collision(0, this->pacman->get_X() - PACMAN_SPEED, this->pacman->get_Y(), this->map_sketch);
+	walls[3] = map_collision(0, this->pacman->get_X(), PACMAN_SPEED + this->pacman->get_Y(), this->map_sketch);
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 		if (!walls[2]) {
