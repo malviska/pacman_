@@ -11,7 +11,7 @@ class Pacman : public Personagem{
         short lifes = 3;
         bool invencibility = false;
 
-        clock_t invencibilityTimer;
+        clock_t invencibilityTimer = clock();
 
     public:
         Pacman();

@@ -1,6 +1,7 @@
 C = g++
-W = -std=c++11 -Wall
+W = -std=c++11 -Wall -ggdb3
 COVERAGE_FLAG = --coverage
+
 
 B = ./build
 BT = ./build_tests
