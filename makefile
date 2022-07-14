@@ -13,15 +13,17 @@ SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
 all: program
 
-collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/personagem_test.o ${BT}/collision_test.o ${BT}/coordenada_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
-	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
 
-main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/personagem.o ${B}/collision.o ${B}/coordenada.o ${B}/ghosts.o ${B}/game.o 
+
+main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/personagem.o ${B}/collision.o ${B}/coordinate.o ${B}/ghosts.o ${B}/game.o 
 	${C} ${W} ${B}/*.o -o main ${SFML}
 
 run_tests:
 	${BT}/collision_test
 
+collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/personagem_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
+	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
+	
 ${B}/main_test.o: ${T}/main_test.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${T}/main_test.cpp -o ${B}/main_test.o
 	
@@ -29,8 +31,8 @@ ${B}/main.o: main.cpp
 	${C} ${W} -c main.cpp -o ${B}/main.o
 ${B}/menu.o: ${I}/menu.hpp ${S}/menu.cpp
 	${C} ${W} -c ${S}/menu.cpp -o ${B}/menu.o
-${B}/coordenada.o: ${I}/coordenada.hpp ${S}/coordenada.cpp
-	${C} ${W} -c ${S}/coordenada.cpp -o ${B}/coordenada.o
+${B}/coordinate.o: ${I}/coordinate.hpp ${S}/coordinate.cpp
+	${C} ${W} -c ${S}/coordinate.cpp -o ${B}/coordinate.o
 ${B}/food.o: ${I}/food.hpp ${S}/food.cpp
 	${C} ${W} -c ${S}/food.cpp -o ${B}/food.o
 ${B}/map.o: ${I}/map.hpp ${S}/map.cpp
@@ -52,8 +54,8 @@ ${BT}/main_test.o: main.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c main.cpp -o ${BT}/main.o
 ${BT}/menu_test.o: ${I}/menu.hpp ${S}/menu.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${S}/menu.cpp -o ${BT}/menu.o
-${BT}/coordenada_test.o: ${I}/coordenada.hpp ${S}/coordenada.cpp
-	${C} ${W} ${COVERAGE_FLAG} -c ${S}/coordenada.cpp -o ${BT}/coordenada.o
+${BT}/coordinate_test.o: ${I}/coordinate.hpp ${S}/coordinate.cpp
+	${C} ${W} ${COVERAGE_FLAG} -c ${S}/coordinate.cpp -o ${BT}/coordinate.o
 ${BT}/food_test.o: ${I}/food.hpp ${S}/food.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${S}/food.cpp -o ${BT}/food.o
 ${BT}/map_test.o: ${I}/map.hpp ${S}/map.cpp

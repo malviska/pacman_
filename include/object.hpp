@@ -1,7 +1,7 @@
 #ifndef OBJETO_H
 #define OBJETO_H
 
-#include "coordenada.hpp"
+#include "coordinate.hpp"
 #include "globals.hpp"
 
 class Object{

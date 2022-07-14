@@ -1,5 +1,5 @@
 #include"personagem.hpp"
-#include"coordenada.hpp"
+#include"coordinate.hpp"
 #include"collision.hpp"
 #include<array>
 #ifndef GHOST_H
