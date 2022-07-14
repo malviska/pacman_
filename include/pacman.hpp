@@ -17,7 +17,7 @@ class Pacman : public Character{
         Pacman();
         //virtual void reviver() override;
         virtual void move(Mapa* map) override;
-        virtual void comer(Mapa* map) override;
+        virtual void comer(Mapa* map);
 
         void lose_life();
         short get_lifes();

@@ -31,7 +31,6 @@ class Character{
 
         //virtual void reviver()=0;
         virtual void move(Mapa* map)=0;
-        virtual void comer(Mapa* map)=0;
 
         virtual void setDirection(short dir) = 0;
         int getDirection();

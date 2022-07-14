@@ -1,4 +1,4 @@
-#include "../include/ghosts.hpp"
+#include "../include/ghost.hpp"
 #include <cstdlib>
 
 Ghost::Ghost(){
@@ -19,33 +19,31 @@ void Ghost::move(Mapa* map){
 
     std::array<bool,4> walls{};
 
-    walls[0] = map_collision(1, PACMAN_SPEED + this->get_X(), this->get_Y(), *map);
-	walls[1] = map_collision(1, this->get_X(), this->get_Y() - PACMAN_SPEED, *map);
-	walls[2] = map_collision(1, this->get_X() - PACMAN_SPEED, this->get_Y(), *map);
-	walls[3] = map_collision(1, this->get_X(), PACMAN_SPEED + this->get_Y(), *map);
+    walls[0] = map_collision(1, GHOST_SPEED + this->get_X(), this->get_Y(), *map);
+	walls[1] = map_collision(1, this->get_X(), this->get_Y() - GHOST_SPEED, *map);
+	walls[2] = map_collision(1, this->get_X() - GHOST_SPEED, this->get_Y(), *map);
+	walls[3] = map_collision(1, this->get_X(), GHOST_SPEED + this->get_Y(), *map);
 
     if (0 == walls[direction]) {
         switch (direction) {
             case 0: {
-                this->set_X(PACMAN_SPEED + this->get_X());
-
+                this->set_X(GHOST_SPEED + this->get_X());
                 break;
             }
 
             case 1: {
-                this->set_Y(this->get_Y() - PACMAN_SPEED);
-
+                this->set_Y(this->get_Y() - GHOST_SPEED);
                 break;
             }
 
             case 2: {
-                this->set_X(this->get_X() - PACMAN_SPEED);
-
+                this->set_X(this->get_X() - GHOST_SPEED);
                 break;
             }
 
             case 3: {
-                this->set_Y(this->get_Y() + PACMAN_SPEED);
+                this->set_Y(this->get_Y() + GHOST_SPEED);
+                break;
             }
         }
 
@@ -66,8 +64,6 @@ void Ghost::move(Mapa* map){
 void Ghost::setDirection(short dir){
     this->direction = dir;
 }
-
-void Ghost::comer(Mapa *map){}
 
 bool Ghost::getIsFrightened(){
     return this->isFrightened;

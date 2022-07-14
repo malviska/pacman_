@@ -1,7 +1,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "doctest.h"
 #include "../include/pacman.hpp"
-#include "../include/ghosts.hpp"
+#include "../include/ghost.hpp"
 
 static void mock_map(std::vector<std::vector<Object*>> * mocked_i_map){
     Pacman mocked_pacman;

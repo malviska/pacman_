@@ -6,7 +6,7 @@
 #include <string>
 #include <cmath>
 #include "pacman.hpp"
-#include "ghosts.hpp"
+#include "ghost.hpp"
 
 using Mapa = std::vector<std::vector<Object*>>;
 

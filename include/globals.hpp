@@ -10,6 +10,7 @@ constexpr int SCREEN_RESIZE = 2;
 constexpr int FONT_HEIGHT = 16;
 constexpr int TUNEL_HEIGHT = 9;
 constexpr int PACMAN_SPEED = 1;
+constexpr int GHOST_SPEED = 1;
 
 enum Type{
     blank,
