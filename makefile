@@ -11,7 +11,7 @@ T = ./test
 
 SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
-all: program
+all: main
 
 main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/character.o ${B}/collision.o ${B}/coordinate.o ${B}/ghost.o ${B}/game.o 
 	${C} ${W} ${B}/*.o -o main ${SFML}
