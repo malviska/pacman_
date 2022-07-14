@@ -11,7 +11,7 @@ T = ./test
 
 SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
-all: program
+all: main
 
 collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/personagem_test.o ${BT}/collision_test.o ${BT}/coordenada_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
 	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
