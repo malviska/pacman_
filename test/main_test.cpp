@@ -8,10 +8,10 @@ int main(){
     Mapa mapinha = map.ler_mapa(File, *pacman);
 
     for(int i = 0; i < 5; i++){
-        pacman->mover(0, &mapinha);
+        pacman->move(0, &mapinha);
     }
     for(int i = 0; i < 4; i++){
-        pacman->mover(2, &mapinha);
+        pacman->move(2, &mapinha);
     }
 
 

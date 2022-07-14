@@ -25,7 +25,10 @@ coordinate_test: ${BT}/coordinate_test.o
 
 food_test: ${BT}/food_test.o ${BT}/object_test.o
 	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/food_test ${T}/food_test.cpp ${BT}/*.o ${SFML}
-				
+
+pacman_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/character_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
+	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/pacman_test ${T}/pacman_test.cpp ${BT}/*.o ${SFML}
+
 ${B}/main_test.o: ${T}/main_test.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${T}/main_test.cpp -o ${B}/main_test.o
 	

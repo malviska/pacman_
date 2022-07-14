@@ -30,7 +30,7 @@ class Character{
         void set_Y_init(int _y);
 
         //virtual void reviver()=0;
-        virtual void mover(Mapa* map)=0;
+        virtual void move(Mapa* map)=0;
         virtual void comer(Mapa* map)=0;
 
         virtual void setDirection(short dir) = 0;

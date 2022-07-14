@@ -11,7 +11,6 @@ TEST_CASE("Food test 01 - When create a food, then increment the counter"){
     CHECK(Food::get_count() == 3);
 };
 
-
 TEST_CASE("Food test 02 - When the is eatene, then decrement the counter"){
     food_1->eaten();
 

@@ -6,7 +6,7 @@ Ghost::Ghost(){
     this->direction = 0;
 }
 
-void Ghost::mover(Mapa* map){
+void Ghost::move(Mapa* map){
     /*
         função responsável pela movimentação do pacman
         recebe a direção e o rascunho do mapa do jogo

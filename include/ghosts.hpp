@@ -17,7 +17,7 @@ class Ghost : public Character{
         void setIsFrightened();
         bool getIsFrightened();
 
-        virtual void mover(Mapa* map) override;
+        virtual void move(Mapa* map) override;
         virtual void comer(Mapa* map) override;
         virtual void setDirection(short dir) override;
 };
