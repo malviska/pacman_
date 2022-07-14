@@ -13,11 +13,11 @@ SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
 all: program
 
-main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/personagem.o ${B}/collision.o ${B}/coordinate.o ${B}/ghosts.o ${B}/game.o 
+main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/character.o ${B}/collision.o ${B}/coordinate.o ${B}/ghosts.o ${B}/game.o 
 	${C} ${W} ${B}/*.o -o main ${SFML}
 
 
-collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/personagem_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
+collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/character_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
 	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
 
 coordinate_test: ${BT}/coordinate_test.o 
@@ -43,8 +43,8 @@ ${B}/object.o: ${I}/object.hpp ${S}/object.cpp
 	${C} ${W} -c ${S}/object.cpp -o ${B}/object.o
 ${B}/pacman.o: ${I}/pacman.hpp ${S}/pacman.cpp
 	${C} ${W} -c ${S}/pacman.cpp -o ${B}/pacman.o
-${B}/personagem.o: ${I}/personagem.hpp ${S}/personagem.cpp
-	${C} ${W} -c ${S}/personagem.cpp -o ${B}/personagem.o
+${B}/character.o: ${I}/character.hpp ${S}/character.cpp
+	${C} ${W} -c ${S}/character.cpp -o ${B}/character.o
 ${B}/game.o: ${B}/collision.o ${I}/game.hpp ${S}/game.cpp
 	${C} ${W} -c ${S}/game.cpp -o ${B}/game.o
 ${B}/ghosts.o: ${I}/ghosts.hpp ${S}/ghosts.cpp
@@ -66,8 +66,8 @@ ${BT}/object_test.o: ${I}/object.hpp ${S}/object.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${S}/object.cpp -o ${BT}/object.o
 ${BT}/pacman_test.o: ${I}/pacman.hpp ${S}/pacman.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${S}/pacman.cpp -o ${BT}/pacman.o
-${BT}/personagem_test.o: ${I}/personagem.hpp ${S}/personagem.cpp
-	${C} ${W} ${COVERAGE_FLAG} -c ${S}/personagem.cpp -o ${BT}/personagem.o
+${BT}/character_test.o: ${I}/character.hpp ${S}/character.cpp
+	${C} ${W} ${COVERAGE_FLAG} -c ${S}/character.cpp -o ${BT}/character.o
 ${BT}/game_test.o: ${BT}/collision.o ${I}/game.hpp ${S}/game.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${S}/game.cpp -o ${BT}/game.o
 ${BT}/ghosts_test.o: ${I}/ghosts.hpp ${S}/ghosts.cpp

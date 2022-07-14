@@ -1,11 +1,11 @@
-#include"personagem.hpp"
+#include"character.hpp"
 #include"coordinate.hpp"
 #include"collision.hpp"
 #include<array>
 #ifndef GHOST_H
 #define GHOST_H
 
-class Ghost : public Personagem{
+class Ghost : public Character{
     private:
         bool isFrightened = false;
 

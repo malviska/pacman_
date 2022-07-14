@@ -1,5 +1,5 @@
-#ifndef PERSONAGEM_H
-#define PERSONAGEM_H
+#ifndef CHARACTER_H
+#define CHARACTER_H
 
 #include "coordinate.hpp"
 #include "food.hpp"
@@ -7,7 +7,7 @@
 
 using Mapa = std::vector<std::vector<Object*>>; 
 
-class Personagem{
+class Character{
     protected:
         Coordinate coord_init; //coordinate aonde o pacman começa, será util quando ele morrer
         Coordinate coord_atual; //coordinate atual, usada no movimento do pacman
@@ -15,7 +15,7 @@ class Personagem{
         short direction = 0;
 
     public:
-        virtual ~Personagem();
+        virtual ~Character();
 
         int get_X();
         int get_Y();

@@ -1,11 +1,11 @@
 #ifndef PACMAN_H
 #define PACMAN_H
 
-#include "personagem.hpp"
+#include "character.hpp"
 #include <string>
 #include <ctime>
 
-class Pacman : public Personagem{
+class Pacman : public Character{
     private:
         unsigned score = 0;
         short lifes = 3;
