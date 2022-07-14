@@ -20,10 +20,14 @@ main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o
 
 run_tests:
 	${BT}/collision_test
+	${BT}/coordinate_test
 
 collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/personagem_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghosts_test.o ${BT}/game_test.o 
 	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
-	
+
+coordinate_test: ${BT}/coordinate_test.o 
+	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/coordinate_test ${T}/coordinate_test.cpp ${BT}/*.o ${SFML}
+		
 ${B}/main_test.o: ${T}/main_test.cpp
 	${C} ${W} ${COVERAGE_FLAG} -c ${T}/main_test.cpp -o ${B}/main_test.o
 	

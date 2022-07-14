@@ -8,7 +8,7 @@ class Coordinate{
         int y;
 
     public:
-        std::pair<int,int> getPair();
+        std::pair<int,int> get_pair();
 
         Coordinate();
 

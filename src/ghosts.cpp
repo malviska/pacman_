@@ -13,7 +13,7 @@ void Ghost::mover(Mapa* map){
     */
     std::pair<int,int> useDoor = {10,10};
 
-    if(this->coord_atual.getPair() == useDoor){
+    if(this->coord_atual.get_pair() == useDoor){
         this->direction = 1;
     }
 

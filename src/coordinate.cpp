@@ -21,7 +21,7 @@ void Coordinate::set_Y(int _y){
     this->y = _y;
 }
 
-std::pair<int,int> Coordinate::getPair(){
+std::pair<int,int> Coordinate::get_pair(){
     std::pair<int,int> p = {this->x, this->y};
     
     return p;
