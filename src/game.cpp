@@ -211,7 +211,7 @@ void Game::updatePacman(){
 	}
 
     if(0 == walls[this->pacman->getDirection()]) {
-        this->pacman->mover(&this->map_sketch);
+        this->pacman->move(&this->map_sketch);
         this->pacman->comer(&this->map_sketch);
     }
 
@@ -271,10 +271,10 @@ void Game::updateGhost(){
         }
     }
 
-    this->red->mover(&this->map_sketch);
-    this->blue->mover(&this->map_sketch);
-    this->pink->mover(&this->map_sketch);
-    this->orange->mover(&this->map_sketch);
+    this->red->move(&this->map_sketch);
+    this->blue->move(&this->map_sketch);
+    this->pink->move(&this->map_sketch);
+    this->orange->move(&this->map_sketch);
 }
 
 void Game::updateText(){

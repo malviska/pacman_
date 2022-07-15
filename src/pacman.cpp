@@ -10,7 +10,7 @@ void Pacman::setDirection(short dir){
     this->direction = dir;
 }
 
-void Pacman::mover(Mapa* map){
+void Pacman::move(Mapa* map){
     switch (direction)
     {
         case 0: {

@@ -1,11 +1,11 @@
 #ifndef PACMAN_H
 #define PACMAN_H
 
-#include "personagem.hpp"
+#include "character.hpp"
 #include <string>
 #include <ctime>
 
-class Pacman : public Personagem{
+class Pacman : public Character{
     private:
         unsigned score = 0;
         short lifes = 3;
@@ -16,8 +16,8 @@ class Pacman : public Personagem{
     public:
         Pacman();
         //virtual void reviver() override;
-        virtual void mover(Mapa* map) override;
-        virtual void comer(Mapa* map) override;
+        virtual void move(Mapa* map) override;
+        virtual void comer(Mapa* map);
 
         void lose_life();
         short get_lifes();

@@ -1,11 +1,11 @@
-#include"personagem.hpp"
-#include"coordenada.hpp"
+#include"character.hpp"
+#include"coordinate.hpp"
 #include"collision.hpp"
 #include<array>
 #ifndef GHOST_H
 #define GHOST_H
 
-class Ghost : public Personagem{
+class Ghost : public Character{
     private:
         bool isFrightened = false;
 
@@ -17,8 +17,7 @@ class Ghost : public Personagem{
         void setIsFrightened();
         bool getIsFrightened();
 
-        virtual void mover(Mapa* map) override;
-        virtual void comer(Mapa* map) override;
+        virtual void move(Mapa* map) override;
         virtual void setDirection(short dir) override;
 };
 

@@ -1,16 +1,16 @@
-#ifndef COORDENADA_H
-#define COORDENADA_H
+#ifndef COORDINATE_H
+#define COORDINATE_H
 #include<utility>
 
-class Coordenada{
+class Coordinate{
     private:
         int x;
         int y;
 
     public:
-        std::pair<int,int> getPair();
+        std::pair<int,int> get_pair();
 
-        Coordenada();
+        Coordinate();
 
         int get_X();
         int get_Y();

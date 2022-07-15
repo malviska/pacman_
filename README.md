@@ -84,3 +84,12 @@ Contém o código fonte do jogo e implementação.
 Contém os testes utlizados para depuração dos métodos.
 ## makefile 
 Contém os comandos utilizados no terminal para depuração e execução do jogo.
+
+## COMO EXECUTAR
+
+    É necessário que a biblioteca sfml esteja instalada.
+    Compilar jogo:      $  make main
+    Rodar jogo:         $  make run
+
+    Compilar Testes:    $  make main_test
+    Rodar jogo:         $  make run_tests
