@@ -13,6 +13,8 @@ class Food : public Object{
     public:
         Food();
         Food(Type tipo);
+
+        static int get_count();
         
         int get_points();
         void eaten();

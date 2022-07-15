@@ -12,6 +12,9 @@ Food::Food(Type tipo) : Object(tipo){
     this->points = DRUG_POINTS;
 }
 
+int Food::get_count(){
+    return Food::count;
+}
 int Food::get_points(){
     return this->points;
 }

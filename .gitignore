@@ -1,2 +1,5 @@
 .vscode/
 /build
+/build_tests
+*.gcda
+*gcno

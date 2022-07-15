@@ -86,7 +86,7 @@ TEST_CASE("collision test 04 - When character collide with an enegirze, then the
     CHECK(result == false);
 };
 
-TEST_CASE("collision test 05 - When character collide with an ghost, then the return is true so it can move"){
+TEST_CASE("collision test 05 - When character collide with anghost, then the return is true so it can move"){
     bool mocked_i_use_door = 0;
 
     int mocked_ghost_position_x = 10;

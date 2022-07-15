@@ -5,7 +5,7 @@
 #include <chrono>
 #include <sstream>
 #include <SFML/Graphics.hpp>
-#include "ghosts.hpp"
+#include "ghost.hpp"
 #include"collision.hpp"
 
 class Game{
