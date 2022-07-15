@@ -1,6 +1,7 @@
 C = g++
 W = -std=c++11 -Wall -ggdb3
 COVERAGE_FLAG = --coverage
+GCORV = gcorv -r . --filter=
 
 
 B = ./build
@@ -16,6 +17,17 @@ all: main
 main: ${B}/main.o ${B}/menu.o ${B}/map.o ${B}/object.o ${B}/food.o ${B}/pacman.o ${B}/character.o ${B}/collision.o ${B}/coordinate.o ${B}/ghost.o ${B}/game.o 
 	${C} ${W} ${B}/*.o -o main ${SFML}
 
+main_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/character_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghost_test.o ${BT}/game_test.o 
+	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/main_test ${T}/main_test.cpp ${BT}/*.o ${SFML}
+
+coverage_tests: 
+	${GCORV}"${T}/main_test.cpp" -s
+
+run: 
+	./main
+
+run_tests:
+	${BT}/main_test 
 
 collision_test: ${BT}/map_test.o ${BT}/object_test.o ${BT}/pacman_test.o ${BT}/food_test.o ${BT}/character_test.o ${BT}/collision_test.o ${BT}/coordinate_test.o ${BT}/ghost_test.o ${BT}/game_test.o 
 	${C} ${W} ${COVERAGE_FLAG} -o ${BT}/collision_test ${T}/collision_test.cpp ${BT}/*.o ${SFML}
