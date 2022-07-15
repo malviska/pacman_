@@ -2,131 +2,128 @@
 #include "../include/game.hpp"
 
 Menu::Menu(){
-    window = new sf::RenderWindow();
+    this->window = new sf::RenderWindow();
 
-    font = new sf::Font();
-    image = new sf::Texture();
-    bg = new sf::Sprite();
+    this->font = new sf::Font();
+    this->image = new sf::Texture();
+    this->bg = new sf::Sprite();
 
     set_values();
 }
 
 Menu::~Menu(){
-    delete window;
-    delete font;
-    delete image;
-    delete bg;
+    delete this->window;
+    delete this->font;
+    delete this->image;
+    delete this->bg;
 }
 
 void Menu::init_screen(){
-    window->create(sf::VideoMode(720, 600), "Pacman", sf::Style::Titlebar | sf::Style::Close);
-    window->setPosition(sf::Vector2i(350,90));
+    this->window->create(sf::VideoMode(720, 550), "Pacman", sf::Style::Titlebar | sf::Style::Close);
+    this->window->setPosition(sf::Vector2i(350,90));
 
-    font->loadFromFile("./data/ethn.otf");
-    image->loadFromFile("./data/background.png");
-    bg->setTexture(*image);
+    this->font->loadFromFile("./data/ethn.otf");
+    this->image->loadFromFile("./data/background.png");
+    this->bg->setTexture(*this->image);
 }
 
 void Menu::set_values(){
-    init_screen();
+    this->init_screen();
 
-    pos = 0;
-    pressed = theselect = false;
+    this->pos = 0;
 
-    options = {"Jogar", "Opcoes", "Recordes", "Sair"};
-    texts.resize(4);
-    coords = {{300, 250}, {300, 330}, {280, 410}, {330, 490}};
-    sizes = {28, 24, 24, 24};
+    this->pressed = this->theselect = false;
 
-    for (std::size_t i{}; i < texts.size(); ++i){
-        texts[i].setFont(*font);
-        texts[i].setString(options[i]);
-        texts[i].setCharacterSize(sizes[i]);
-        texts[i].setOutlineColor(sf::Color::Blue);
-        texts[i].setPosition(coords[i]);
+    this->options = {"Jogar", "Recordes", "Sair"};
+    this->texts.resize(3);
+    this->coords = {{300, 250}, {280, 330}, {330, 410}};
+    this->sizes = {28, 24, 24};
+
+    for (std::size_t i{}; i < this->texts.size(); ++i){
+        this->texts[i].setFont(*this->font);
+        this->texts[i].setString(this->options[i]);
+        this->texts[i].setCharacterSize(this->sizes[i]);
+        this->texts[i].setOutlineColor(sf::Color::Blue);
+        this->texts[i].setPosition(this->coords[i]);
     }
 
-    texts[0].setOutlineThickness(4);
-    pos = 0;
+    this->texts[0].setOutlineThickness(4);
+    this->pos = 0;
 }
 
 void Menu::loop_events(){
     sf::Event event;
 
-    while(window->pollEvent(event)){
+    while(this->window->pollEvent(event)){
 
         if(event.type == sf::Event::Closed){
-            window->close();
+            this->window->close();
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !pressed){
-            if(pos < 3){
-                ++pos;
-                pressed = true;
-                texts[pos].setOutlineThickness(4);
-                texts[pos - 1].setOutlineThickness(0);
-                pressed = false;
-                theselect = false;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !this->pressed){
+            if(this->pos < 3){
+                ++this->pos;
+                this->pressed = true;
+                this->texts[this->pos].setOutlineThickness(4);
+                this->texts[this->pos - 1].setOutlineThickness(0);
+                this->pressed = false;
+                this->theselect = false;
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !pressed){
-            if(pos > 0){
-                --pos;
-                pressed = true;
-                texts[pos].setOutlineThickness(4);
-                texts[pos + 1].setOutlineThickness(0);
-                pressed = false;
-                theselect = false;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && !this->pressed){
+            if(this->pos > 0){
+                --this->pos;
+                this->pressed = true;
+                this->texts[this->pos].setOutlineThickness(4);
+                this->texts[this->pos + 1].setOutlineThickness(0);
+                this->pressed = false;
+                this->theselect = false;
             }
         }
 
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !theselect){
-            theselect = true;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Enter) && !this->theselect){
+            this->theselect = true;
 
             if(pos == 0){
                 Game game;
-                window->close();
+                this->window->close();
                 while (game.running())
                 {
                     game.update();
                     game.render();
                 }
-                init_screen();
+                this->set_values();
             }
 
-            if(pos == 1){
+            if(this->pos == 1){
                 
             }
 
-            if(pos == 2){
-                
-            }
-
-            if(pos == 3){
-                window->close();
+            if(this->pos == 2){
+                this->window->close();
             }
         }
     }
 }
 
 void Menu::draw_all(){
-    window->clear();
+    this->window->clear();
 
-    window->draw(*bg);
+    this->window->draw(*this->bg);
 
-    for(auto t : texts){
-        window->draw(t);
+    for(auto t : this->texts){
+        this->window->draw(t);
     }
 
-    window->display();
+    this->window->display();
 }
 
 void Menu::run_menu(){
-    while(window->isOpen()){
+    while(this->window->isOpen()){
 
-        loop_events();
+        this->loop_events();
 
-        draw_all();
+        this->draw_all();
     }
 }
